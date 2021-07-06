@@ -100,7 +100,7 @@ RSpec.describe "Users", type: :request do
 
     # Test suite for DELETE /users/:id
     describe 'DELETE /users/:id' do
-        before { delete "/todos/#{user_id}" }
+        before { delete "/users/#{user_id}" }
 
         it 'returns status code 204' do
             expect(response).to have_http_status(204)
