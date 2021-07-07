@@ -1,4 +1,6 @@
 class MeasurementsController < ApplicationController
+    before_action :find_measurement, except: %i[create index]
+
     # GET /measurements
     def index
         @measurements = Measurement.all
@@ -8,7 +10,7 @@ class MeasurementsController < ApplicationController
     # POST /measurements
     def create
         @measurement = Measurement.create!(measurement_params)
-        json_response(@Measurement, :created)
+        json_response(@measurement, :created)
     end
 
     # GET /measurements/:id
@@ -26,5 +28,15 @@ class MeasurementsController < ApplicationController
     def destroy
         @measurement.destroy
         head :no_content
+    end
+
+    private 
+
+    def measurement_params
+        params.permit(:name, :unit)
+    end
+
+    def find_measurement
+        @measurement = Measurement.find(params[:id])
     end
 end
