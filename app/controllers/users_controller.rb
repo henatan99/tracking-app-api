@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     # GET /users/:id
     def show
         json_response(@user)
+        # render json: @user
     end
 
     # PUT /users/:id
@@ -33,11 +34,11 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        # whielist params
+        # whitelist params
         params.permit(:username)
     end
 
     def find_user
-        user = User.find(params[:id])
+        @user = User.find(params[:id])
     end
 end

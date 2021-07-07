@@ -44,7 +44,7 @@ RSpec.describe "Users", type: :request do
             end
 
             it 'returns a not found message' do
-                expect(response.body).to match(/Couldn't find user/)
+                expect(response.body).to match("{\"message\":\"Couldn't find User with 'id'=100\"}")
             end
         end
     end
@@ -58,7 +58,7 @@ RSpec.describe "Users", type: :request do
             before { post '/users', params: valid_attributes }
 
             it 'creates a user' do
-                expect(json['username'].to eq('hanatan'))
+                expect(json['username']).to eq('henatan')
             end
 
             it 'returns status code 201' do
@@ -75,7 +75,7 @@ RSpec.describe "Users", type: :request do
 
             it 'returns a validation failure message' do
                 expect(response.body)
-                    .to match(/Validation filed: User name can't be blank/)
+                    .to match("{\"message\":\"Validation failed: Username can't be blank\"}")
             end 
         end
     end
