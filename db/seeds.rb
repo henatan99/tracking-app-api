@@ -7,15 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create([
-    {
-        username: "henatan"
-    },
+                      {
+                        username: "henatan"
+                      },
 
-    {
-        username: "selam"
-    },
+                      {
+                        username: "selam"
+                      },
 
-    {
-        username: "zabaleta"
-    }
-])
+                      {
+                        username: "zabaleta"
+                      }
+                    ])
