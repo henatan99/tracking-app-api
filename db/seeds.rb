@@ -27,3 +27,16 @@ measurements = Measurement.create([
   {name: "Fat", unit: "%"},
   {name: "Weight", unit: "kg"}
 ])
+
+measureds = Measured.create([
+  {value: 100, user_id: 1, measurement_id: 1},
+  {value: 30, user_id: 1, measurement_id: 2},
+  {value: 70, user_id: 1, measurement_id: 3},
+  {value: 40, user_id: 1, measurement_id: 4},
+  {value: 120, user_id: 1, measurement_id: 5},
+  {value: 100, user_id: 2, measurement_id: 1},
+  {value: 30, user_id: 2, measurement_id: 2},
+  {value: 70, user_id: 2, measurement_id: 3},
+  {value: 40, user_id: 2, measurement_id: 4},
+  {value: 120, user_id: 2, measurement_id: 5},
+])
