@@ -19,3 +19,11 @@ users = User.create([
                         username: "zabaleta"
                       }
                     ])
+
+measurements = Measurement.create([
+  {name: "BP", unit: "PSI"},
+  {name: "HeartBeat", unit: "beat/min"},
+  {name: "Sugar", unit: "mmol/L"},
+  {name: "Fat", unit: "%"},
+  {name: "Weight", unit: "kg"}
+])
