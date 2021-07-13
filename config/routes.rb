@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :measureds
     resources :goals
+    resources :filter_by_measurement_id_measureds
   end
   resources :measurements
 end
