@@ -34,6 +34,11 @@ class MeasuredsController < ApplicationController
     @measured.destroy
     head :no_content
   end
+  
+  # GET /users/:user_id/measureds/measurements
+  def measureds_by_measurements
+    @user.measureds
+  end
 
   private
 

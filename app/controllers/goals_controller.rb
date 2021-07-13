@@ -11,7 +11,7 @@ class GoalsController < ApplicationController
           # json_response(@measureds)
           json_response(@user.goals)
         end
-      
+
         # POST /users/:user_id/measureds
         def create
           # @measured = Measured.create!(measured_params)
