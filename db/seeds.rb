@@ -22,11 +22,11 @@ users = User.create([
 
 measurements = Measurement.create([
                                     { name: "BP", unit: "PSI", icon: "https://image.flaticon.com/icons/png/512/5038/5038288.png" },
-                                    { name: "HeartBeat", unit: "beat/min", "https://image.flaticon.com/icons/png/512/4659/4659280.png" },
-                                    { name: "Sugar", unit: "mmol/L", "https://image.flaticon.com/icons/png/512/3411/3411326.png" },
-                                    { name: "Fat", unit: "%", "https://image.flaticon.com/icons/png/512/1690/1690455.png" },
-                                    { name: "Weight", unit: "kg", "https://image.flaticon.com/icons/png/512/1599/1599539.png" },
-                                    { name: "Cholestrol", unit: "mmol/L", "https://image.flaticon.com/icons/png/512/2843/2843646.png"}
+                                    { name: "HeartBeat", unit: "beat/min", icon: "https://image.flaticon.com/icons/png/512/4659/4659280.png" },
+                                    { name: "Sugar", unit: "mmol/L", icon: "https://image.flaticon.com/icons/png/512/3411/3411326.png" },
+                                    { name: "Fat", unit: "%", icon: "https://image.flaticon.com/icons/png/512/1690/1690455.png" },
+                                    { name: "Weight", unit: "kg", icon: "https://image.flaticon.com/icons/png/512/1599/1599539.png" },
+                                    { name: "Cholestrol", unit: "mmol/L", icon: "https://image.flaticon.com/icons/png/512/2843/2843646.png"}
                                   ])
 
 measureds = Measured.create([

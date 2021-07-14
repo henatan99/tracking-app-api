@@ -1,0 +1,2 @@
+      invoke  active_record
+      remove    db/migrate/20210713225552_change_column.rb
