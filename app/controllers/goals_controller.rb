@@ -18,7 +18,7 @@ class GoalsController < ApplicationController
           @user.goals.create!(goals_params)
           json_response(@goal, :created)
         end
-      
+
         # GET /users/:user_id/measureds/:id
         def show
           json_response(@goal)
