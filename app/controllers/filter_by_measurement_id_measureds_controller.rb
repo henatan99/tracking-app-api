@@ -8,7 +8,8 @@ class FilterByMeasurementIdMeasuredsController < ApplicationController
             filtered = @user.measureds.select { |measured| measured.measurement_id == measurement.id }
             @measureds_by_measurement.push(filtered)
         end
-        json_response(@measureds_by_measurement)
+        @measureds_by_measurement
+        json_response(@user.measureds)
     end
 
     private

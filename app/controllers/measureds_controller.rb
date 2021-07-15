@@ -6,8 +6,6 @@ class MeasuredsController < ApplicationController
 
   # GET /users/:user_id/measureds
   def index
-    # @measureds = Measured.all
-    # json_response(@measureds)
     json_response(@user.measureds)
   end
 

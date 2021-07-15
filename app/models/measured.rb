@@ -4,5 +4,6 @@ class Measured < ApplicationRecord
 
   validates_presence_of :value
 
-  scope :created_before, ->(time) { where("created_at < ?", time) if time.present? }
+  scope :filter_by_date, ->(date) { where("created_at = ?", date) if date.present? }
+  scope :filter_by_measurement_id, -> (measurement_id) { where measurement_id: measurement_id }
 end
