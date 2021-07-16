@@ -5,11 +5,10 @@ class FilterByMeasurementIdMeasuredsController < ApplicationController
     def index
         @measureds_by_measurement = []
         @measurements.each do |measurement|
-            filtered = @user.measureds.map { |measured| 
+            filtered = @user.measureds.select { |measured| measurement.id === measured.measurement_id }
             @measureds_by_measurement.push(
-                {:key => "#{measured.measurement_id}", :value => measured}
-                ) if measured.measurement_id == measurement.id
-        }
+                {:key => "#{measurement.id}", :value => filtered}
+                ) if filtered
         end
         @measureds_by_measurement
         json_response(@measureds_by_measurement)
