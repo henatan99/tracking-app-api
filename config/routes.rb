@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :measureds
     resources :goals
     resources :filter_by_measurement_id_measureds
+    resources :filter_by_date_measureds
     resources :measurements do 
       resources :measureds
     end
