@@ -39,7 +39,7 @@ class GoalsController < ApplicationController
         private
       
         def goals_params
-          params.permit(:quantity, day_one, day_last, :user_id, :measurement_id)
+          params.permit(:quantity, :day_one, :day_last, :user_id, :measurement_id)
         end
 
         def set_user
