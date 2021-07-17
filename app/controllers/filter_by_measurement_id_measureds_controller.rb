@@ -5,10 +5,8 @@ class FilterByMeasurementIdMeasuredsController < ApplicationController
     def index
         @measureds_by_measurement = []
         @measurements.each do |measurement|
-            filtered = @user.measureds.select { |measured| measurement.id === measured.measurement_id }
-            @measureds_by_measurement.push(
-                {:key => "#{measurement.id}", :value => filtered}
-                ) if filtered
+            filtered = @user.measureds.order_by_measurement_id.select { |measured| measurement.id === measured.measurement_id }
+            @measureds_by_measurement.push(filtered) if filtered
         end
         @measureds_by_measurement
         json_response(@measureds_by_measurement)
@@ -22,7 +20,7 @@ class FilterByMeasurementIdMeasuredsController < ApplicationController
 
     def measured_params
         params.permit(:user_id, :measurement_id)
-      end
+    end
 
     def set_user
         @user = User.find(params[:user_id])
