@@ -3,7 +3,7 @@ class GoalsController < ApplicationController
         # GET /measureds
         before_action :set_user
         # before_action :set_measurement
-        before_action :set_user_goals, only: [:show, :update, :destroy]
+        before_action :set_user_goal, only: [:show, :update, :destroy]
       
         # GET /users/:user_id/measureds
         def index
@@ -46,8 +46,8 @@ class GoalsController < ApplicationController
           @user = User.find(params[:user_id])
         end
 
-        def set_user_goals
-          @goals = @user.goals.find_by!(id: params[:id]) if @user
+        def set_user_goal
+          @goal = @user.goals.find_by!(id: params[:id]) if @user
         end
          
 end
