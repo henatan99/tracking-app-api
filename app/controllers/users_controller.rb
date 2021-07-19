@@ -10,7 +10,13 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.create!(user_params)
-    json_response(@user, :created)
+    if user.valid? 
+      payload = {user_id: user.id}
+      token = encode_token(payload)
+      render json: {user: user, jwt: token}
+    else
+      render json: {errors: user.errors.full_message}, status: :not_acceptable
+    end
   end
 
   # GET /users/:id
