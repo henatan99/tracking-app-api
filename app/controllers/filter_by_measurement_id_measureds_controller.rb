@@ -9,7 +9,8 @@ class FilterByMeasurementIdMeasuredsController < ApplicationController
             @measureds_by_measurement.push(filtered) if filtered
         end
         @measureds_by_measurement
-        json_response(@measureds_by_measurement)
+        # json_response(@measureds_by_measurement)
+        render json: {measureds_by_measurement: @measureds_by_measurement, goals: @user.goals}
     end
 
     def show

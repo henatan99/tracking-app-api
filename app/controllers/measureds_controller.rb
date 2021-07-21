@@ -6,7 +6,8 @@ class MeasuredsController < ApplicationController
 
   # GET /users/:user_id/measureds
   def index
-    json_response(@user.measureds)
+    # json_response(@user.measureds)
+    render json: {measureds: @user.measureds, goals: @user.goals}
   end
 
   # POST /users/:user_id/measureds
