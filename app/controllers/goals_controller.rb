@@ -48,6 +48,5 @@ class GoalsController < ApplicationController
 
         def set_user_goal
           @goal = @user.goals.find_by!(id: params[:id]) if @user
-        end
-         
+        end   
 end
