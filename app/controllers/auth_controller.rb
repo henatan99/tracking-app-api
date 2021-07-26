@@ -3,10 +3,11 @@ class AuthController < ApplicationController
 
     def login
         user = User.find_by(username: params[:username])
+        measurements = Measurement.all
         if user
             payload = {user_id: user.id}
             token = encode_token(payload)
-            render json: {user: user, jwt: token, success: "Welcome, #{user.username}"}
+            render json: {user: user, jwt: token, success: "Welcome, #{user.username}", measurements: measurements}
         else
             render json: {failure: "Log in failed! Username Invalid!"}
         end

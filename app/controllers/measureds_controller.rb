@@ -12,9 +12,12 @@ class MeasuredsController < ApplicationController
 
   # POST /users/:user_id/measureds
   def create
-    # @measured = Measured.create!(measured_params)
-    @user.measureds.create!(measured_params)
-    json_response(@measured, :created)
+    if (Goal.all.goals_measurement_ids(@user).include?(measured_params[:measurement_id]))
+      @user.measureds.create!(measured_params)
+      json_response(@measured, :created)
+    else
+      render json: {failure: "Goal not created!"}
+    end
   end
 
   # GET /users/:user_id/measureds/:id

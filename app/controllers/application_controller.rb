@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
 
-  before_action :require_login 
+  before_action :require_login
   def logged_in?
     !!session_user
   end
