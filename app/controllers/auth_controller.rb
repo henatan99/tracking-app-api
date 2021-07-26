@@ -14,8 +14,9 @@ class AuthController < ApplicationController
     end
 
     def auto_login
+        measurements = Measurement.all
         if session_user
-            render json: session_user
+            render json: {user: session_user, measurements: measurements}
         else
             render json: {errors: "No User Logged In"}
         end
