@@ -10,11 +10,12 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    measurements = Measurement.all
     @user = User.create!(user_params)
     if @user.valid? 
       payload = {user_id: @user.id}
       token = encode_token(payload)
-      render json: {user: @user, jwt: token}
+      render json: {user: @user, jwt: token, success: "Welcome, #{user.username}", measurements: measurements}
     else
       render json: {errors: @user.errors.full_message}, status: :not_acceptable
     end
