@@ -2,7 +2,7 @@ class Measured < ApplicationRecord
   belongs_to :user
   belongs_to :measurement
 
-  validates_presence_of :value
+  validates_presence_of :value, :user_id, :measurement_id
 
   scope :order_by_date, -> { order(created_at: :desc) }
   scope :order_by_measurement_id, -> { order(measurement_id: :asc) }
