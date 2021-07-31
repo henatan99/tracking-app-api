@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # ExceptionHandler
 module ExceptionHandler
   # provides the more graceful 'included' method

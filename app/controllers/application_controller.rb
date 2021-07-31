@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 # rubocop:disable Style/GuardClause
+
 # ApplicationController
 class ApplicationController < ActionController::API
   include Response

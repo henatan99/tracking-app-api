@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Measurement < ApplicationRecord
   has_many :measureds
   has_many :goals
