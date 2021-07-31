@@ -1,22 +1,25 @@
+# frozen_string_literal: true
+
+# MeasuredsController
 class MeasuredsController < ApplicationController
   # GET /measureds
   before_action :set_user
   # before_action :set_measurement
-  before_action :set_user_measured, only: [:show, :update, :destroy]
+  before_action :set_user_measured, only: %i[show update destroy]
 
   # GET /users/:user_id/measureds
   def index
     # json_response(@user.measureds)
-    render json: {measureds: @user.measureds, goals: @user.goals}
+    render json: { measureds: @user.measureds, goals: @user.goals }
   end
 
   # POST /users/:user_id/measureds
   def create
-    if (Goal.all.goals_measurement_ids(@user).include?(measured_params[:measurement_id]))
+    if Goal.all.goals_measurement_ids(@user).include?(measured_params[:measurement_id])
       @user.measureds.create!(measured_params)
       json_response(@measured, :created)
     else
-      render json: {failure: "Goal not created!"}
+      render json: { failure: 'Goal not created!' }
     end
   end
 

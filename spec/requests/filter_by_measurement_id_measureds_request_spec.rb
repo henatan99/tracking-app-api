@@ -1,5 +1,7 @@
-require 'rails_helper'
+# frozen_string_literal: true
+# # frozen_string_literal: true
 
-RSpec.describe "FilterByMeasurementIdMeasureds", type: :request do
+# require 'rails_helper'
 
-end
+# RSpec.describe 'FilterByMeasurementIdMeasureds', type: :request do
+# end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# UsersController
 class UsersController < ApplicationController
   before_action :find_user, except: %i[create index]
   skip_before_action :require_login, only: [:create]
@@ -12,12 +15,12 @@ class UsersController < ApplicationController
   def create
     measurements = Measurement.all
     @user = User.create!(user_params)
-    if @user.valid? 
-      payload = {user_id: @user.id}
+    if @user.valid?
+      payload = { user_id: @user.id }
       token = encode_token(payload)
-      render json: {user: @user, jwt: token, success: "Welcome, #{@user.username}", measurements: measurements}
+      render json: { user: @user, jwt: token, success: "Welcome, #{@user.username}", measurements: measurements }
     else
-      render json: {errors: @user.errors.full_message}, status: :not_acceptable
+      render json: { errors: @user.errors.full_message }, status: :not_acceptable
     end
   end
 

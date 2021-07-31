@@ -22,8 +22,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://tracking-app-react1.herokuapp.com/)
-
+[Live Demo Link](https://pure-tundra-23506.herokuapp.com/)
 
 ## Getting Started
 

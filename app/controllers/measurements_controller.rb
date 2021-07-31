@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# MeasurementsController
 class MeasurementsController < ApplicationController
   skip_before_action :require_login, only: [:index]
   before_action :find_measurement, except: %i[create index]

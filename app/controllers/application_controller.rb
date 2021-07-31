@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# rubocop:disable Style/GuardClause
+# ApplicationController
 class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
@@ -8,7 +12,7 @@ class ApplicationController < ActionController::API
   end
 
   def require_login
-    render json: {message: 'Please Login'}, status: :unauthorized unless logged_in?
+    render json: { message: 'Please Login' }, status: :unauthorized unless logged_in?
   end
 
   def encode_token(payload)
@@ -20,8 +24,6 @@ class ApplicationController < ActionController::API
     if decoded_hash && !decoded_hash.empty?
       user_id = decoded_hash[0]['user_id']
       @user = User.find_by(id: user_id)
-    else
-      nil
     end
   end
 
@@ -40,3 +42,5 @@ class ApplicationController < ActionController::API
     end
   end
 end
+
+# rubocop:enable Style/GuardClause
