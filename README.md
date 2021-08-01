@@ -2,9 +2,10 @@
 
 # Project Name
 
-This project is a backend rails API for tracking-app which is built based on RESTfull approach. Authorized users can make various requests. 
+This project is a RESTfull rails backend API for personal health tracking application. The API let's users and front-end developers fetch various data with GET, POST, UPDATE and DESTROY requests.
 
 ## Models 
+Four database model classes are defined
 - User model 
 - Measurement model
 - Measured model
@@ -42,15 +43,15 @@ To get a local copy up and running follow these simple example steps.
 ### Install
 - `bundle install`
 ### Usage
-- User controller requests 
+- User requests from front end. Many of the requests require user_login through JWT authentication.
+
+#### users controller requests
 `GET /users`
 `POST /users`
 `GET /users/:id`
 `PUT /users/:id`
 `DELETE /users/:id`
-------------------------------------------
 For get requests
-------------------------------------------
 ```
      {
         headers: {
@@ -58,9 +59,7 @@ For get requests
         },
       },
 ```
-------------------------------------------
-    For post requests
-------------------------------------------
+For post requests
 ```
     headers: {
         'Content-Type': 'application/json',
@@ -70,12 +69,16 @@ For get requests
         username,
       },
 ```
-- Measurement controller requests
+Response data for create action
+```
+      render json: { user: @user, jwt: token, success: "Welcome, #{@user.username}", measurements: measurements }
+```
+Response data for create
+#### Measurement controller requests
 `GET /measurements`
 `POST /measurements`
-------------------------------------------
+
 For get requests
-------------------------------------------
 ```
      {
         headers: {
@@ -83,15 +86,19 @@ For get requests
         },
       },
 ```
-- Measureds controller requests
+Response data for create action
+```
+    json_response(@measurement, :created)
+```
+
+#### Measureds controller requests
 `GET /users/:user_id/measureds`
 `POST /users/:user_id/measureds`
 `GET /users/:user_id/measureds/:id`
 `PUT /users/:user_id/measureds/:id`
 `DELETE users/:user_id/measureds/:id`
----------------------------------------------
+
 For get requests
----------------------------------------------
 ```
       {
         headers: {
@@ -99,9 +106,8 @@ For get requests
         },
       },
 ```
------------------------------------------
- For post request
------------------------------------------
+
+For post request
 ```
  headers: {
         Authorization: `Bearer ${token}`,
@@ -111,12 +117,26 @@ For get requests
         measurement_id: measurementId,
       },
 ```
-- Goals controller requests
+Response data for index action 
+```
+    render json: { measureds: @user.measureds, goals: @user.goals }
+```
+
+Response data for create action 
+```
+    if Goal.all.goals_measurement_ids(@user).include?(measured_params[:measurement_id])
+      @user.measureds.create!(measured_params)
+      json_response(@measured, :created)
+    else
+      render json: { failure: 'Goal not created!' }
+    end
+```
+
+#### Goals controller requests
 `GET /users/:user_id/goals`
 `POST /users/:user_id/goals`
------------------------------------
-For get post requests
------------------------------------
+
+For post requests
 ```
     data: {
         quantity,
@@ -128,13 +148,40 @@ For get post requests
         Authorization: `Bearer ${token}`,
       },
 ```
-- FilterByMeasurementId controller requests
+Response data for create action 
+``` 
+    json_response(@goal, :created)
+```
+
+#### FilterByMeasurementId controller requests
 `GET /users/:user_id/filter_by_measurement_id_measureds`
-- Auth controller requstes
+
+For get requests
+```
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+```
+Response data for index action
+```
+def index
+    @measureds_by_measurement = []
+    @measurements.each do |measurement|
+      filtered = @user.measureds.order_by_measurement_id.select do |measured|
+        measurement.id == measured.measurement_id
+      end
+      @measureds_by_measurement.push(filtered) if filtered
+    end
+    # json_response(@measureds_by_measurement)
+    render json: { measureds_by_measurement: @measureds_by_measurement, goals: @user.goals }
+  end
+```
+#### Auth controller requstes
 `POST /login`
-------------------------------------------------
+
 For post requests
-------------------------------------------------
 ```
  headers: {
         'Content-Type': 'application/json',
@@ -143,6 +190,11 @@ For post requests
       data: {
         username,
       },
+```
+
+Response data
+```
+      render json: { user: user, jwt: token, success: "Welcome, #{user.username}", measurements: measurements }
 ```
 ### Run tests
 Go to the root directory and run 
