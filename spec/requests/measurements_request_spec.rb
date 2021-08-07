@@ -7,12 +7,12 @@ RSpec.describe 'Measurements', type: :request do
   let!(:measurements) { create_list(:measurement, 10) }
   let(:id) { measurements.first.id }
 
-   before :each do 
+  before :each do 
     MeasurementsController.skip_before_action :require_login
-   end 
-    after :each do
-        MeasurementsController.before_action :require_login
-    end
+  end 
+  after :each do
+    MeasurementsController.before_action :require_login
+  end
 
   # Test suite for GET /measurements
   describe 'GET /measurements' do
