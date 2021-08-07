@@ -3,15 +3,22 @@
 # require 'rails_helper'
 
 # RSpec.describe 'Users', type: :request do
+#     include ApiHelper
+
 #   # initialize test data
+
 #   let!(:users) { create_list(:user, 10) }
 #   let(:user_id) { users.first.id }
-
+  
 #   # Test suite for GET /users
 #   describe 'GET /users' do
 #     # make HTTP get request before each example
-#     before { get '/users' }
-
+#     let(:user) { create(:user) }
+#     before {
+#         get '/users'
+#         authenticated_header(request, user)
+#     }
+    
 #     it 'returns users' do
 #       # Note 'json' is a custom helper to parse JSON responses
 #       expect(json).not_to be_empty
