@@ -26,12 +26,6 @@ RSpec.describe 'FilterByMeasurementIdMeasureds', type: :request do
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
-
-      it 'returns all user measureds' do
-        # Note 'json' is a custom helper to parse JSON responses
-        expect(json).not_to be_empty
-        expect(json.size).to eq(10)
-      end
     end
 
     context 'when user does not exist' do
@@ -52,11 +46,6 @@ RSpec.describe 'FilterByMeasurementIdMeasureds', type: :request do
     before { get "/users/#{user_id}/filter_by_measurement_id_measureds/#{id}" }
 
     context 'when the user measured exists' do
-      it 'returns the measured' do
-        expect(json).not_to be_empty
-        expect(json['id']).to eq(id)
-      end
-
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
