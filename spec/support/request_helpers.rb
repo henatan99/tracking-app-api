@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module AuthHelpers
   def auth_headers(user)
     token = Knock::AuthToken.new(payload: { sub: user.id }).token

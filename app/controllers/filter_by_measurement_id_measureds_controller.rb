@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # FilterByMeasurementIdMeasuredsController
 class FilterByMeasurementIdMeasuredsController < ApplicationController
   before_action :set_user

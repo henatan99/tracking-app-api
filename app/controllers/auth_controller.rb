@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # AuthController
 class AuthController < ApplicationController
   skip_before_action :require_login, only: %i[login auto_login]

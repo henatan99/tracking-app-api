@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Goal
 class Goal < ApplicationRecord
   belongs_to :user

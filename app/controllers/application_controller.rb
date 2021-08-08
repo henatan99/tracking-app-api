@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # rubocop:disable Style/GuardClause
 # rubocop:disable Style/DoubleNegation
 
