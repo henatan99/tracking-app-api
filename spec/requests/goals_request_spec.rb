@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Goals', type: :request do
   let!(:user) { create(:user) }
   let!(:measurement) { create(:measurement) }
-  let!(:goals) { create_list(:goals, 10, user_id: user.id, measurement_id: measurement.id) }
+  let!(:goals) { create_list(:goal, 1, user_id: user.id, measurement_id: measurement.id) }
   let(:user_id) { user.id }
   let(:measurement_id) { measurement.id }
   let(:id) { goals.first.id }
