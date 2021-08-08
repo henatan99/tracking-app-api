@@ -4,19 +4,15 @@
 class GoalsController < ApplicationController
   # GET /measureds
   before_action :set_user
-  # before_action :set_measurement
   before_action :set_user_goal, only: %i[show update destroy]
 
   # GET /users/:user_id/measureds
   def index
-    # @measureds = Measured.all
-    # json_response(@measureds)
     json_response(@user.goals)
   end
 
   # POST /users/:user_id/measureds
   def create
-    # @measured = Measured.create!(measured_params)
     @user.goals.create!(goals_params)
     json_response(@goal, :created)
   end

@@ -4,12 +4,10 @@
 class MeasuredsController < ApplicationController
   # GET /measureds
   before_action :set_user
-  # before_action :set_measurement
   before_action :set_user_measured, only: %i[show update destroy]
 
   # GET /users/:user_id/measureds
   def index
-    # json_response(@user.measureds)
     render json: { measureds: @user.measureds, goals: @user.goals }
   end
 

@@ -27,7 +27,6 @@ class UsersController < ApplicationController
   # GET /users/:id
   def show
     json_response(@user)
-    # render json: @user
   end
 
   # PUT /users/:id

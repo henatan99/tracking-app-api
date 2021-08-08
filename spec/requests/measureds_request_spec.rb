@@ -33,7 +33,6 @@ RSpec.describe 'Measureds', type: :request do
       it 'returns all user measureds' do
         # Note 'json' is a custom helper to parse JSON responses
         expect(json).not_to be_empty
-        # expect(json.size).to eq(10)
       end
     end
 
