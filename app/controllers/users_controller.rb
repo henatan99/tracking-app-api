@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # UsersController
 class UsersController < ApplicationController
   before_action :find_user, except: %i[create index]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # GoalsController
 class GoalsController < ApplicationController
   # GET /measureds

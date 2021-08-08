@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 require 'rails_helper'
 
 RSpec.describe 'Goals', type: :request do
@@ -10,9 +12,9 @@ RSpec.describe 'Goals', type: :request do
   let(:measurement_id) { measurement.id }
   let(:id) { goals.first.id }
 
-  before :each do 
+  before :each do
     GoalsController.skip_before_action :require_login
-  end 
+  end
   after :each do
     GoalsController.before_action :require_login
   end
@@ -63,3 +65,5 @@ RSpec.describe 'Goals', type: :request do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength

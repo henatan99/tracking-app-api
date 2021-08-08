@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # MeasuredsController
 class MeasuredsController < ApplicationController
   # GET /measureds

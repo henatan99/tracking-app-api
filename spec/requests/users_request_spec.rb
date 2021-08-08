@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
@@ -7,9 +9,9 @@ RSpec.describe 'Users', type: :request do
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
 
-  before :each do 
+  before :each do
     UsersController.skip_before_action :require_login
-  end 
+  end
   after :each do
     UsersController.before_action :require_login
   end
@@ -116,3 +118,5 @@ RSpec.describe 'Users', type: :request do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength

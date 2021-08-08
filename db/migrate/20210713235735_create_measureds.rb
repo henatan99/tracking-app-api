@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # CreateMeasureds
 class CreateMeasureds < ActiveRecord::Migration[6.1]
   def change

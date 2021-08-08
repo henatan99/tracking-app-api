@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 # rubocop:disable Style/GuardClause
-# rubocop:disable Style/DoubleNegation
 
 # ApplicationController
 class ApplicationController < ActionController::API
@@ -44,4 +45,3 @@ class ApplicationController < ActionController::API
 end
 
 # rubocop:enable Style/GuardClause
-# rubocop:enable Style/DoubleNegation

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # FilterByDateMeasuredsController
 class FilterByDateMeasuredsController < ApplicationController
   before_action :set_user

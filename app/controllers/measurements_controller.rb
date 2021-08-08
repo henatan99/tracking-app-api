@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # MeasurementsController
 class MeasurementsController < ApplicationController
   skip_before_action :require_login, only: [:index]
