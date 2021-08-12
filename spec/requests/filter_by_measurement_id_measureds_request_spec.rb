@@ -2,8 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Measureds', type: :request do
-  # initialize test data
+RSpec.describe 'FilterByMeasurementIdMeasureds', type: :request do
   let!(:user) { create(:user) }
   let!(:measurement) { create(:measurement) }
   let!(:measureds) { create_list(:measured, 10, user_id: user.id, measurement_id: measurement.id) }
@@ -12,25 +11,20 @@ RSpec.describe 'Measureds', type: :request do
   let(:id) { measureds.first.id }
 
   before :each do
-    MeasuredsController.skip_before_action :require_login
+    FilterByMeasurementIdMeasuredsController.skip_before_action :require_login
   end
   after :each do
-    MeasuredsController.before_action :require_login
+    FilterByMeasurementIdMeasuredsController.before_action :require_login
   end
 
-  # Test suite for GET /measureds
-  describe 'GET /users/:user_id/measureds' do
+  # Test suite for GET /users/filter_by_measurement_id_measureds
+  describe 'GET /users/:user_id/filter_by_measurement_id_measureds' do
     # make HTTP get request before each example
-    before { get "/users/#{user_id}/measureds" }
+    before { get "/users/#{user_id}/filter_by_measurement_id_measureds" }
 
     context 'when user exists' do
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns all user measureds' do
-        # Note 'json' is a custom helper to parse JSON responses
-        expect(json).not_to be_empty
       end
     end
 
@@ -47,21 +41,15 @@ RSpec.describe 'Measureds', type: :request do
     end
   end
 
-  # Test suite for GET /users/:user_id/measureds/:id
-  describe 'GET /users/:user_id/measureds/:id' do
-    before { get "/users/#{user_id}/measureds/#{id}" }
+  # Test suite for GET /users/:user_id/filter_by_measurement_id_measureds/:id
+  describe 'GET /users/:user_id/filter_by_measurement_id_measureds/:id' do
+    before { get "/users/#{user_id}/filter_by_measurement_id_measureds/#{id}" }
 
     context 'when the user measured exists' do
-      it 'returns the measured' do
-        expect(json).not_to be_empty
-        expect(json['id']).to eq(id)
-      end
-
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
     end
   end
 end
-
 # rubocop:enable Metrics/BlockLength

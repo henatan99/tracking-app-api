@@ -1,9 +1,18 @@
+# rubocop:disable Metrics/BlockLength
+
 require 'rails_helper'
 
-RSpec.describe "Measurements", type: :request do
+RSpec.describe 'Measurements', type: :request do
   # initialize test data
   let!(:measurements) { create_list(:measurement, 10) }
   let(:id) { measurements.first.id }
+
+  before :each do
+    MeasurementsController.skip_before_action :require_login
+  end
+  after :each do
+    MeasurementsController.before_action :require_login
+  end
 
   # Test suite for GET /measurements
   describe 'GET /measurements' do
@@ -52,7 +61,7 @@ RSpec.describe "Measurements", type: :request do
   # Test suite for POST /measurements
   describe 'POST /measurements' do
     # valid payload
-    let(:valid_attributes) { { name: 'blood pressure', unit: "psi" } }
+    let(:valid_attributes) { { name: 'blood pressure', unit: 'psi' } }
 
     context 'when the request is valid' do
       before { post '/measurements', params: valid_attributes }
@@ -84,7 +93,7 @@ RSpec.describe "Measurements", type: :request do
   # Test suite for PUT /measurements/:id
 
   describe 'PUT /measurements/:id' do
-    let(:valid_attributes) { { name: 'heart beat', unit: "/min" } }
+    let(:valid_attributes) { { name: 'heart beat', unit: '/min' } }
 
     context 'when the record exists' do
       before { put "/measurements/#{id}", params: valid_attributes }
@@ -108,3 +117,5 @@ RSpec.describe "Measurements", type: :request do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength

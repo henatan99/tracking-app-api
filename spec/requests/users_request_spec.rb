@@ -1,9 +1,18 @@
+# rubocop:disable Metrics/BlockLength
+
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   # initialize test data
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
+
+  before :each do
+    UsersController.skip_before_action :require_login
+  end
+  after :each do
+    UsersController.before_action :require_login
+  end
 
   # Test suite for GET /users
   describe 'GET /users' do
@@ -58,11 +67,11 @@ RSpec.describe "Users", type: :request do
       before { post '/users', params: valid_attributes }
 
       it 'creates a user' do
-        expect(json['username']).to eq('henatan')
+        expect(json['user']['username']).to eq('henatan')
       end
 
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -107,3 +116,5 @@ RSpec.describe "Users", type: :request do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength

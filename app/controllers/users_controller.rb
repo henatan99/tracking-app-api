@@ -1,5 +1,7 @@
+# UsersController
 class UsersController < ApplicationController
   before_action :find_user, except: %i[create index]
+  skip_before_action :require_login, only: [:create]
 
   # GET /users
   def index
@@ -9,14 +11,20 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    measurements = Measurement.all
     @user = User.create!(user_params)
-    json_response(@user, :created)
+    if @user.valid?
+      payload = { user_id: @user.id }
+      token = encode_token(payload)
+      render json: { user: @user, jwt: token, success: "Welcome, #{@user.username}", measurements: measurements }
+    else
+      render json: { errors: @user.errors.full_message }, status: :not_acceptable
+    end
   end
 
   # GET /users/:id
   def show
     json_response(@user)
-    # render json: @user
   end
 
   # PUT /users/:id

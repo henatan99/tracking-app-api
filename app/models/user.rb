@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :measureds
+  has_many :measureds, -> { order(created_at: :desc) }
   has_many :measurements, through: :measureds
+  has_many :goals
 
-  validates_presence_of :username
+  validates :username, presence: true, uniqueness: true
 end
